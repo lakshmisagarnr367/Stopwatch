@@ -1,62 +1,51 @@
-
-window.onload = function(){
-    var seconds = 00;
-    var tens = 00;
+window.onload = function() {
+    var seconds = 0;
+    var tens = 0;
     var appendTens = document.getElementById("tens");
     var appendSeconds = document.getElementById("seconds");
     var buttonStart = document.getElementById("button-start");
     var buttonStop = document.getElementById("button-stop");
-    var buttonReset =document.getElementById("button-reset");
+    var buttonReset = document.getElementById("button-reset");
     var Interval;
 
     // to start the timer
-    buttonStart.onclick= function (){
-    Interval = setInterval(startTimer, 15);
-    }
+    buttonStart.onclick = function() {
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10); // Reduce the interval for smoother animation
+    };
 
     // to stop the timer
-    buttonStop.onclick = function (){
-    clearInterval(Interval);
-    }
+    buttonStop.onclick = function() {
+        clearInterval(Interval);
+    };
 
     // to reset the timer
-    buttonReset.onclick = function () {
-    clearInterval (Interval);
-    tens = "00";
-    seconds= "00";
-    appendTens.innerHTML = tens;
-    appendSeconds.innerHTML = seconds;
-}
+    buttonReset.onclick = function() {
+        clearInterval(Interval);
+        tens = 0;
+        seconds = 0;
+        appendTens.innerHTML = "00";
+        appendSeconds.innerHTML = "00";
+    };
 
+    function startTimer() {
+        tens++;
 
-function startTimer() {
-    tens++;
+        // Handle tens and seconds formatting
+        if (tens <= 9) {
+            appendTens.innerHTML = "0" + tens;
+        } else if (tens <= 99) {
+            appendTens.innerHTML = tens;
+        } else {
+            seconds++;
+            appendSeconds.innerHTML = seconds <= 9 ? "0" + seconds : seconds;
+            tens = 0;
+            appendTens.innerHTML = "00";
+        }
 
-    // case:1 : when tens is less than 9
-    if(tens <= 9){
-    appendTens.innerHTML = "0" + tens;
-    console.log(tens + "One");
+        // Stop the timer after a specific time (you can modify this condition based on your needs)
+        if (seconds >= 60) {
+            clearInterval(Interval);
+        }
     }
-
-    // case:2 : when tens is greater than 9
-    if(tens > 9){
-    appendTens.innerHTML = tens;
-    console.log(tens + "Two");
-    }
-
-    // case:3 : when tens is greater than 99
-    if(tens > 99) {
-    console.log(tens + "Three");
-    seconds++;
-    appendSeconds.innerHTML = "0" + seconds;
-    tens = 0;
-    appendTens.innerHTML = "0" + 0;
-    }
-
-    // case:4 : when seconds is greater than 9
-    if(seconds > 9) {
-    appendSeconds.innerHTML = seconds
-    console.log(tens + "Four");
-    }
-    }
-}
+};
