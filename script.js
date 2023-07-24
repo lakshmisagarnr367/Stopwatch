@@ -12,7 +12,7 @@ window.onload = function() {
     // to start the timer
     buttonStart.onclick = function() {
         clearInterval(Interval);
-        Interval = setInterval(startTimer, 15); // Reduce the interval for smoother animation
+        Interval = setInterval(startTimer, 10); // Reduce the interval for smoother animation
     };
 
     // to stop the timer
