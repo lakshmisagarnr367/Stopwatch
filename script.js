@@ -1,3 +1,4 @@
+//Stopwatch JS
 window.onload = function() {
     var seconds = 0;
     var tens = 0;
@@ -43,7 +44,7 @@ window.onload = function() {
             appendTens.innerHTML = "00";
         }
 
-        // Stop the timer after a specific time (we can modify this condition based on our needs)
+        // Stop the timer after a specific time (We can modify this condition based on our needs)
         if (seconds >= 60) {
             clearInterval(Interval);
         }
