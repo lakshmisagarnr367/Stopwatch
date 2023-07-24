@@ -43,7 +43,7 @@ window.onload = function() {
             appendTens.innerHTML = "00";
         }
 
-        // Stop the timer after a specific time (you can modify this condition based on your needs)
+        // Stop the timer after a specific time (we can modify this condition based on our needs)
         if (seconds >= 60) {
             clearInterval(Interval);
         }
